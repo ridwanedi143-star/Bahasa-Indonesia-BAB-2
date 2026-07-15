@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bahasa Indonesia Kelas 1 SD - Bab 2: Ayo, Bermain!</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for Kids -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fffbeb; /* Warm soft yellow background */
+        }
+        h1, h2, h3, h4, .fun-font {
+            font-family: 'Fredoka', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FEF3C7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #fbbf24;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d97706;
+        }
+        /* Animations */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+        .animate-shake {
+            animation: shake 0.3s ease-in-out;
+        }
+        @keyframes bounce-gentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-bounce-gentle {
+            animation: bounce-gentle 2s infinite ease-in-out;
+        }
+        #traceCanvas {
+            touch-action: none;
+        }
+        /* Certificate Print Styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #certificateContainer, #certificateContainer * {
+                visibility: visible;
+            }
+            #certificateContainer {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                border: none !important;
+                box-shadow: none !important;
+                background-color: #fff !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col overflow-x-hidden selection:bg-amber-200">
+
+    <!-- HEADER & MAIN NAVIGATION -->
+    <header class="bg-gradient-to-r from-amber-400 via-orange-400 to-red-400 text-white shadow-xl relative overflow-hidden">
+        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#fff_20%,transparent_20%)] bg-[size:16px_16px]"></div>
+        <div class="container mx-auto px-4 py-4 flex flex-col lg:flex-row justify-between items-center relative z-10 gap-4">
+            <!-- Brand -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('beranda')">
+                <div class="bg-white p-2.5 rounded-full shadow-lg text-orange-500 text-3xl animate-bounce">
+                    <i class="fa-solid fa-bicycle"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-extrabold tracking-wide drop-shadow-md">BahasaKita</h1>
+                    <p class="text-xs font-bold text-amber-100 uppercase tracking-widest">Bab 2: Ayo, Bermain! (Kelas 1 SD)</p>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="flex flex-wrap justify-center gap-2 md:gap-3 bg-white/20 p-1.5 rounded-3xl backdrop-blur-sm shadow-inner">
+                <button onclick="switchTab('beranda')" id="tab-beranda" class="tab-btn px-4 py-2 rounded-2xl text-sm font-bold flex items-center gap-2 transition-all bg-white text-orange-600 shadow">
+                    <i class="fa-solid fa-house"></i> Beranda
+                </button>
+                <button onclick="switchTab('keselamatan')" id="tab-keselamatan" class="tab-btn px-4 py-2 rounded-2xl text-sm font-bold flex items-center gap-2 transition-all hover:bg-white/30 text-white">
+                    <i class="fa-solid fa-shield-halved"></i> Keselamatan & (!) (?)
+                </button>
+                <button onclick="switchTab('dongeng')" id="tab-dongeng" class="tab-btn px-4 py-2 rounded-2xl text-sm font-bold flex items-center gap-2 transition-all hover:bg-white/30 text-white">
+                    <i class="fa-solid fa-book-open"></i> Dongeng Caca
+                </button>
+                <button onclick="switchTab('suku-kata')" id="tab-suku-kata" class="tab-btn px-4 py-2 rounded-2xl text-sm font-bold flex items-center gap-2 transition-all hover:bg-white/30 text-white">
+                    <i class="fa-solid fa-spell-check"></i> Suku Kata H & C
+                </button>
+                <button onclick="switchTab('menulis')" id="tab-menulis" class="tab-btn px-4 py-2 rounded-2xl text-sm font-bold flex items-center gap-2 transition-all hover:bg-white/30 text-white">
+                    <i class="fa-solid fa-pen-fancy"></i> Tulis H & C
+                </button>
+                <button onclick="switchTab('game')" id="tab-game" class="tab-btn px-4 py-2 rounded-2xl text-sm font-bold flex items-center gap-2 transition-all hover:bg-white/30 text-white">
+                    <i class="fa-solid fa-puzzle-piece"></i> Detektif Kata
+                </button>
+                <button onclick="switchTab('latihan')" id="tab-latihan" class="tab-btn px-4 py-2 rounded-2xl text-sm font-bold flex items-center gap-2 transition-all hover:bg-white/30 text-white">
+                    <i class="fa-solid fa-file-invoice"></i> Uji Pintar
+                </button>
+                <button onclick="switchTab('hasil')" id="tab-hasil" class="tab-btn px-4 py-2 rounded-2xl text-sm font-bold flex items-center gap-2 transition-all hover:bg-white/30 text-white">
+                    <i class="fa-solid fa-medal"></i> Piagam
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="flex-grow container mx-auto px-4 py-6 max-w-6xl">
+        
+        <!-- ==================== TAB 1: BERANDA ==================== -->
+        <section id="content-beranda" class="tab-content block animate-fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-4">
+                
+                <!-- Welcome Info (Left) -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <span class="inline-block bg-amber-100 text-amber-800 px-4 py-2 rounded-full text-sm font-extrabold shadow-sm border border-amber-200">
+                        🚲 Ayo Berpetualang di Taman Bermain!
+                    </span>
+                    <h2 class="text-4xl lg:text-5xl font-black text-slate-800 leading-tight">
+                        Mari Belajar <span class="text-orange-500 underline decoration-wavy decoration-red-400">Keselamatan, Huruf H & C</span>!
+                    </h2>
+                    <p class="text-lg text-slate-600 font-medium max-w-xl">
+                        Di Bab 2 ini, kita akan mengamati cara bermain yang aman di taman, berlatih mengucapkan kalimat tanya (?) dan larangan (!), menyimak kegigihan Caca belajar sepeda roda dua, dan mengenal huruf <strong>H</strong> dan <strong>C</strong>.
+                    </p>
+
+                    <!-- Companion Selector -->
+                    <div class="bg-white p-5 rounded-3xl shadow-xl border border-slate-100">
+                        <h3 class="text-lg font-bold text-slate-700 mb-3 flex items-center justify-center lg:justify-start gap-2">
+                            <i class="fa-solid fa-face-laugh-beam text-orange-500 animate-pulse"></i> Pilih Teman Berpetualangmu:
+                        </h3>
+                        <div class="grid grid-cols-4 gap-3 max-w-md mx-auto lg:mx-0">
+                            <button onclick="selectCompanion('c1', '🐰 Caca Kelinci')" id="c1" class="avatar-opt p-2 border-2 border-orange-400 bg-orange-50 rounded-2xl shadow transition-all hover:scale-105">
+                                <span class="text-4xl block">🐰</span>
+                                <span class="text-xs font-bold text-slate-700">Caca</span>
+                            </button>
+                            <button onclick="selectCompanion('c2', '🐱 Koko Kucing')" id="c2" class="avatar-opt p-2 border-2 border-transparent hover:border-orange-300 rounded-2xl shadow transition-all hover:scale-105">
+                                <span class="text-4xl block">🐱</span>
+                                <span class="text-xs font-bold text-slate-700">Koko</span>
+                            </button>
+                            <button onclick="selectCompanion('c3', '🐯 Hari Harimau')" id="c3" class="avatar-opt p-2 border-2 border-transparent hover:border-orange-300 rounded-2xl shadow transition-all hover:scale-105">
+                                <span class="text-4xl block">🐯</span>
+                                <span class="text-xs font-bold text-slate-700">Hari</span>
+                            </button>
+                            <button onclick="selectCompanion('c4', '🐦 Cici Burung')" id="c4" class="avatar-opt p-2 border-2 border-transparent hover:border-orange-300 rounded-2xl shadow transition-all hover:scale-105">
+                                <span class="text-4xl block">🐦</span>
+                                <span class="text-xs font-bold text-slate-700">Cici</span>
+                            </button>
+                        </div>
+                        <div class="mt-4 text-sm font-semibold text-orange-800 text-center lg:text-left">
+                            Teman barumu saat ini: <span id="activeCompanionName" class="font-extrabold bg-orange-100 px-3 py-1 rounded-full text-orange-800">🐰 Caca Kelinci</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="switchTab('keselamatan')" class="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-lg rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-gamepad"></i> Mulai Main Aman
+                        </button>
+                        <button onclick="switchTab('dongeng')" class="px-8 py-4 bg-red-400 hover:bg-red-500 text-white font-extrabold text-lg rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all flex items-center gap-3">
+                            <i class="fa-solid fa-book-open-reader"></i> Baca Dongeng Caca
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mascot & Fast Sound Panel (Right) -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div class="relative bg-white p-6 rounded-3xl shadow-2xl border-4 border-orange-300 w-full max-w-sm flex flex-col items-center animate-bounce-gentle">
+                        
+                        <div class="absolute -top-12 bg-yellow-300 text-slate-800 font-black px-4 py-2 rounded-2xl text-xs shadow-md border-2 border-slate-800 after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-yellow-300">
+                            Ketuk aku untuk bicara! 🔊
+                        </div>
+                        
+                        <!-- Companion Display -->
+                        <div id="companionDisplay" class="text-9xl my-4 select-none cursor-pointer hover:scale-110 active:scale-95 transition-transform" onclick="speakCompanionIntro()">
+                            🐰
+                        </div>
+
+                        <div class="text-center">
+                            <h4 id="companionName" class="text-xl font-extrabold text-slate-700">🐰 Caca Kelinci</h4>
+                            <p class="text-xs text-slate-500 font-bold mt-1">"C-a-c-a diawali huruf C!"</p>
+                        </div>
+
+                        <!-- Mini Sound simulator grid -->
+                        <div class="w-full mt-6 bg-slate-50 p-3 rounded-2xl border border-slate-100">
+                            <span class="text-xs font-black text-slate-500 block text-center mb-2 uppercase tracking-wider">🔊 Eksperimen Bunyi Bermain</span>
+                            <div class="grid grid-cols-4 gap-2">
+                                <button onclick="playBermainSound('bell')" class="p-2 bg-yellow-100 hover:bg-yellow-200 text-lg rounded-xl transition shadow-sm animate-pulse" title="Kring Kring Sepeda">🔔</button>
+                                <button onclick="playBermainSound('fall')" class="p-2 bg-red-100 hover:bg-red-200 text-lg rounded-xl transition shadow-sm" title="Bruk! Jatuh">💥</button>
+                                <button onclick="playBermainSound('whistle')" class="p-2 bg-blue-100 hover:bg-blue-200 text-lg rounded-xl transition shadow-sm" title="Prit! Prit!">🚨</button>
+                                <button onclick="playBermainSound('laugh')" class="p-2 bg-emerald-100 hover:bg-emerald-200 text-lg rounded-xl transition shadow-sm" title="Tertawa Ceria">😄</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 2: KESELAMATAN BERMAIN & TANDA BACA ==================== -->
+        <section id="content-keselamatan" class="tab-content hidden animate-fade-in">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <span class="bg-orange-100 text-orange-800 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider">Belajar Aman & Sopan</span>
+                <h2 class="text-3xl font-extrabold text-slate-800 mt-2">Aturan Bermain Aman & Intonasi Tanda Baca 🛡️</h2>
+                <p class="text-sm text-slate-500 font-bold">Amati situasi di bawah ini dan dengarkan suara tanda baca yang benar!</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
+                
+                <!-- Kiri: Aman vs Bahaya Simulator -->
+                <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100">
+                    <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Pilih Cara Bermain yang Baik:</h3>
+                    
+                    <div class="space-y-4">
+                        <!-- Situasi 1 -->
+                        <div onclick="checkSafetyStatus(true, 'Antre giliran main perosotan')" class="p-4 bg-emerald-50 hover:bg-emerald-100 border-2 border-emerald-200 rounded-2xl cursor-pointer flex items-center justify-between transition-all">
+                            <div class="flex items-center gap-3">
+                                <span class="text-3xl">🧑‍🤝‍🧑</span>
+                                <div>
+                                    <h4 class="font-bold text-slate-700">Sabar Mengantre Giliran</h4>
+                                    <p class="text-xs text-slate-500">Menunggu teman selesai bermain.</p>
+                                </div>
+                            </div>
+                            <span class="bg-emerald-500 text-white font-extrabold px-3 py-1 rounded-full text-xs">AMAN 🟢</span>
+                        </div>
+
+                        <!-- Situasi 2 -->
+                        <div onclick="checkSafetyStatus(false, 'Meluncur perosotan kepala di bawah')" class="p-4 bg-red-50 hover:bg-red-100 border-2 border-red-200 rounded-2xl cursor-pointer flex items-center justify-between transition-all">
+                            <div class="flex items-center gap-3">
+                                <span class="text-3xl">🙃</span>
+                                <div>
+                                    <h4 class="font-bold text-slate-700">Meluncur Kepala di Bawah</h4>
+                                    <p class="text-xs text-slate-500">Bisa menyebabkan cedera parah.</p>
+                                </div>
+                            </div>
+                            <span class="bg-red-500 text-white font-extrabold px-3 py-1 rounded-full text-xs">BAHAYA 🔴</span>
+                        </div>
+
+                        <!-- Situasi 3 -->
+                        <div onclick="checkSafetyStatus(true, 'Memakai helm pelindung saat bersepeda')" class="p-4 bg-emerald-50 hover:bg-emerald-100 border-2 border-emerald-200 rounded-2xl cursor-pointer flex items-center justify-between transition-all">
+                            <div class="flex items-center gap-3">
+                                <span class="text-3xl">🪖</span>
+                                <div>
+                                    <h4 class="font-bold text-slate-700">Memakai Helm Pelindung</h4>
+                                    <p class="text-xs text-slate-500">Melindungi kepala jika terjatuh.</p>
+                                </div>
+                            </div>
+                            <span class="bg-emerald-500 text-white font-extrabold px-3 py-1 rounded-full text-xs">AMAN 🟢</span>
+                        </div>
+
+                        <!-- Situasi 4 -->
+                        <div onclick="checkSafetyStatus(false, 'Mendorong teman saat bermain ayunan')" class="p-4 bg-red-50 hover:bg-red-100 border-2 border-red-200 rounded-2xl cursor-pointer flex items-center justify-between transition-all">
+                            <div class="flex items-center gap-3">
+                                <span class="text-3xl">🫵</span>
+                                <div>
+                                    <h4 class="font-bold text-slate-700">Mendorong Teman Berebutan</h4>
+                                    <p class="text-xs text-slate-500">Membuat teman terjatuh dan menangis.</p>
+                                </div>
+                            </div>
+                            <span class="bg-red-500 text-white font-extrabold px-3 py-1 rounded-full text-xs">BAHAYA 🔴</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kanan: Trainer Tanda Baca (!) (?) -->
+                <div class="bg-white p-6 rounded-3xl shadow-xl border border-slate-100 flex flex-col justify-between h-full">
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-amber-500 animate-bounce"></i> Intonasi Tanda Baca</h3>
+                        <p class="text-xs text-slate-500 font-bold mb-4">Ketuk gelembung kata di bawah ini untuk mendengar perbedaan tinggi-rendah suaranya!</p>
+                        
+                        <div class="space-y-4">
+                            <!-- Tanda Tanya (?) -->
+                            <div onclick="speakIntonation('tanya')" class="p-4 bg-sky-50 hover:bg-sky-100 border-2 border-sky-300 rounded-2xl cursor-pointer transition">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-black text-sky-700 tracking-wide uppercase"><i class="fa-solid fa-circle-question"></i> Tanda Tanya (?)</span>
+                                    <span class="text-xs font-bold text-slate-400">Suara Melemah di Akhir</span>
+                                </div>
+                                <p class="text-lg font-black text-slate-800">"Apakah kamu mau bermain sepedaku?" ❓</p>
+                            </div>
+
+                            <!-- Tanda Seru (!) -->
+                            <div onclick="speakIntonation('seru')" class="p-4 bg-rose-50 hover:bg-rose-100 border-2 border-rose-300 rounded-2xl cursor-pointer transition">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-black text-rose-700 tracking-wide uppercase"><i class="fa-solid fa-circle-exclamation"></i> Tanda Seru (!)</span>
+                                    <span class="text-xs font-bold text-slate-400">Suara Tegas & Menekankan</span>
+                                </div>
+                                <p class="text-lg font-black text-slate-800">"Hati-hati! Di sana ada batu besar!" ❗️</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Peringatan Kepatuhan -->
+                    <div class="mt-6 bg-amber-50 p-4 border border-amber-200 rounded-2xl">
+                        <h4 class="text-xs font-black text-amber-800 uppercase flex items-center gap-1.5"><i class="fa-solid fa-shield-cat"></i> Pesan Guru Boni:</h4>
+                        <p class="text-xs text-slate-600 font-semibold leading-relaxed mt-1">"Bermainlah dengan gembira, tapi selalu patuhi aturan keselamatan ya agar tidak pulang membawa luka!"</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==================== TAB 3: DONGENG CACA BISA ==================== -->
+        <section id="content-dongeng" class="tab-content hidden animate-fade-in">
+            <div class="text-center mb-6">
+                <span class="bg-red-100 text-red-800 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider">Menyimak Nilai Kegigihan</span>
+                <h2 class="text-3xl font-extrabold text-slate-800 mt-2">Buku Dongeng: Caca Bisa Bersepeda! 🐰🚲</h2>
+                <p class="text-sm text-slate-500 font-bold">Simak perjuangan gigih Caca melepas roda bantu sepedanya!</p>
+            </div>
+
+            <!-- Story Layout -->
+            <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100 grid grid-cols-1 md:grid-cols-12">
+                
+                <!-- Illustration (Left) -->
+                <div class="md:col-span-5 bg-gradient-to-br from-amber-100 to-orange-200 p-8 flex items-center justify-center relative min-h-[250px]">
+                    <div id="storyIllustration" class="text-[120px] select-none transition-transform duration-300 transform hover:scale-110">
+                        🐰
+                    </div>
+                    <!-- Sound button overlay -->
+                    <button onclick="readStoryPage()" class="absolute bottom-4 right-4 w-12 h-12 bg-white text-orange-500 rounded-full flex items-center justify-center shadow-lg hover:bg-orange-50 transition active:scale-95">
+                        <i class="fa-solid fa-volume-high text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Page Text Content (Right) -->
+                <div class="md:col-span-7 p-6 md:p-10 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-extrabold text-orange-500 uppercase tracking-widest">Halaman <span id="currentPageNum">1</span> / 4</span>
+                            <span class="text-sm font-bold bg-amber-100 text-amber-800 px-3 py-1 rounded-full"><span id="onomatopoeiaTag">Kring! Kring!</span></span>
+                        </div>
+                        <h3 id="storyPageTitle" class="text-2xl font-bold text-slate-800 mb-3">Roda Bantu Caca</h3>
+                        <p id="storyPageText" class="text-slate-600 font-medium leading-relaxed">
+                            Caca Kelinci memiliki sebuah sepeda roda empat yang berbunyi klining-klining. Caca ingin sekali bisa naik sepeda roda dua seperti kakaknya!
+                        </p>
+                    </div>
+
+                    <!-- Navigation controls -->
+                    <div class="flex justify-between items-center mt-6 border-t border-slate-100 pt-4">
+                        <button onclick="changeStoryPage(-1)" id="btnStoryPrev" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl transition disabled:opacity-50" disabled>
+                            <i class="fa-solid fa-arrow-left"></i> Kembali
+                        </button>
+                        <button onclick="changeStoryPage(1)" id="btnStoryNext" class="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white font-extrabold rounded-xl shadow transition">
+                            Lanjut <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 4: SUKU KATA H & C ==================== -->
+        <section id="content-suku-kata" class="tab-content hidden animate-fade-in">
+            <div class="text-center mb-8">
+                <span class="bg-red-100 text-red-700 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider">Membaca & Mengeja</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mt-2">Menyuarakan Suku Kata "H" & "C"</h2>
+                <p class="text-sm text-slate-500 font-medium">Ketuk tombol suku kata di bawah ini untuk mendengar cara membacanya yang merdu!</p>
+            </div>
+
+            <!-- Syllable H Grid -->
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div>
+                    <h3 class="text-lg font-black text-slate-700 mb-4 text-center flex items-center justify-center gap-2">🦁 Suku Kata Berawalan Huruf 'H'</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div onclick="pronounceSyllable('ha', 'harimau')" class="bg-white p-6 rounded-3xl border-2 border-orange-200 hover:border-orange-400 shadow-md hover:shadow-xl text-center cursor-pointer transform hover:-translate-y-2 transition-all">
+                            <span class="text-5xl font-black text-orange-500 block mb-2">ha</span>
+                            <span class="bg-orange-50 text-orange-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase">ha - ri - m - a - u</span>
+                            <span class="text-4xl block mt-3">🐯</span>
+                        </div>
+                        <div onclick="pronounceSyllable('hi', 'hiu')" class="bg-white p-6 rounded-3xl border-2 border-sky-200 hover:border-sky-400 shadow-md hover:shadow-xl text-center cursor-pointer transform hover:-translate-y-2 transition-all">
+                            <span class="text-5xl font-black text-sky-500 block mb-2">hi</span>
+                            <span class="bg-sky-50 text-sky-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase">hi - u</span>
+                            <span class="text-4xl block mt-3">🦈</span>
+                        </div>
+                        <div onclick="pronounceSyllable('hu', 'hujan')" class="bg-white p-6 rounded-3xl border-2 border-blue-200 hover:border-blue-400 shadow-md hover:shadow-xl text-center cursor-pointer transform hover:-translate-y-2 transition-all">
+                            <span class="text-5xl font-black text-blue-500 block mb-2">hu</span>
+                            <span class="bg-blue-50 text-blue-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase">hu - j - a - n</span>
+                            <span class="text-4xl block mt-3">🌧️</span>
+                        </div>
+                        <div onclick="pronounceSyllable('he', 'hewan')" class="bg-white p-6 rounded-3xl border-2 border-emerald-200 hover:border-emerald-400 shadow-md hover:shadow-xl text-center cursor-pointer transform hover:-translate-y-2 transition-all">
+                            <span class="text-5xl font-black text-emerald-500 block mb-2">he</span>
+                            <span class="bg-emerald-50 text-emerald-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase">he - w - a - n</span>
+                            <span class="text-4xl block mt-3">🐼</span>
+                        </div>
+                        <div onclick="pronounceSyllable('ho', 'hotel')" class="bg-white p-6 rounded-3xl border-2 border-indigo-200 hover:border-indigo-400 shadow-md hover:shadow-xl text-center cursor-pointer transform hover:-translate-y-2 transition-all">
+                            <span class="text-5xl font-black text-indigo-500 block mb-2">ho</span>
+                            <span class="bg-indigo-50 text-indigo-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase">ho - t - e - l</span>
+                            <span class="text-4xl block mt-3">🏢</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Syllable C Grid -->
+                <div>
+                    <h3 class="text-lg font-black text-slate-700 mb-4 text-center flex items-center justify-center gap-2">🐰 Suku Kata Berawalan Huruf 'C'</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div onclick="pronounceSyllable('ca', 'cacing')" class="bg-white p-6 rounded-3xl border-2 border-red-200 hover:border-red-400 shadow-md hover:shadow-xl text-center cursor-pointer transform hover:-translate-y-2 transition-all">
+                            <span class="text-5xl font-black text-red-500 block mb-2">ca</span>
+                            <span class="bg-red-50 text-red-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase">ca - c - i - n - g</span>
+                            <span class="text-4xl block mt-3">🪱</span>
+                        </div>
+                        <div onclick="pronounceSyllable('ci', 'cacing')" class="bg-white p-6 rounded-3xl border-2 border-pink-200 hover:border-pink-400 shadow-md hover:shadow-xl text-center cursor-pointer transform hover:-translate-y-2 transition-all">
+                            <span class="text-5xl font-black text-pink-500 block mb-2">ci</span>
+                            <span class="bg-pink-50 text-pink-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase">ci - c - a - k</span>
+                            <span class="text-4xl block mt-3">🦎</span>
+                        </div>
+                        <div onclick="pronounceSyllable('cu', 'cumi')" class="bg-white p-6 rounded-3xl border-2 border-indigo-200 hover:border-indigo-400 shadow-md hover:shadow-xl text-center cursor-pointer transform hover:-translate-y-2 transition-all">
+                            <span class="text-5xl font-black text-indigo-500 block mb-2">cu</span>
+                            <span class="bg-indigo-50 text-indigo-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase">cu - m - i</span>
+                            <span class="text-4xl block mt-3">🦑</span>
+                        </div>
+                        <div onclick="pronounceSyllable('ce', 'celana')" class="bg-white p-6 rounded-3xl border-2 border-teal-200 hover:border-teal-400 shadow-md hover:shadow-xl text-center cursor-pointer transform hover:-translate-y-2 transition-all">
+                            <span class="text-5xl font-black text-teal-500 block mb-2">ce</span>
+                            <span class="bg-teal-50 text-teal-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase">ce - l - a - n - a</span>
+                            <span class="text-4xl block mt-3">👖</span>
+                        </div>
+                        <div onclick="pronounceSyllable('co', 'cokelat')" class="bg-white p-6 rounded-3xl border-2 border-amber-200 hover:border-amber-400 shadow-md hover:shadow-xl text-center cursor-pointer transform hover:-translate-y-2 transition-all">
+                            <span class="text-5xl font-black text-amber-500 block mb-2">co</span>
+                            <span class="bg-amber-50 text-amber-700 text-xs font-extrabold px-3 py-1 rounded-full uppercase">co - k - e - l - a - t</span>
+                            <span class="text-4xl block mt-3">🍫</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flashcards -->
+            <div class="max-w-md mx-auto bg-white rounded-3xl border border-slate-100 p-6 shadow-xl mt-10">
+                <h4 class="text-center text-slate-700 font-bold mb-4 flex items-center justify-center gap-2"><i class="fa-solid fa-star text-yellow-400"></i> Cari Kosakata Baru:</h4>
+                <div id="flashcardBox" class="bg-amber-50 rounded-2xl p-8 border border-amber-100 text-center select-none cursor-pointer hover:bg-amber-100 transition active:scale-95" onclick="pronounceFlashcard()">
+                    <span id="flashcardEmoji" class="text-6xl block mb-3">🚲</span>
+                    <span id="flashcardWord" class="text-3xl font-black text-amber-700">SEPEDA</span>
+                    <p class="text-[11px] text-slate-400 font-bold uppercase tracking-wider mt-2">Ketuk kartu untuk bersuara!</p>
+                </div>
+                <!-- Controls for Flashcards -->
+                <div class="flex justify-between items-center mt-4">
+                    <button onclick="prevFlashcard()" class="p-2 bg-slate-100 hover:bg-slate-200 rounded-xl transition text-slate-600 font-black text-xs">⏮️ Sebelumnya</button>
+                    <button onclick="nextFlashcard()" class="p-2 bg-orange-500 hover:bg-orange-600 text-white rounded-xl transition font-black text-xs shadow">Selanjutnya ⏭️</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 5: BELAJAR MENULIS HURUF H & C ==================== -->
+        <section id="content-menulis" class="tab-content hidden animate-fade-in">
+            <div class="text-center mb-6">
+                <span class="bg-amber-100 text-amber-800 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider">Praktik Motorik Halus</span>
+                <h2 class="text-3xl font-extrabold text-slate-800 mt-2">Papan Tulis Tracing Huruf H & C 🖍️</h2>
+                <p class="text-sm text-slate-500 font-medium">Gunakan mouse atau jarimu untuk menulis huruf di bawah ini!</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-4xl mx-auto">
+                <!-- Kiri: Petunjuk Menulis -->
+                <div class="lg:col-span-5 bg-white p-6 rounded-3xl border border-slate-100 shadow-xl space-y-4 text-center">
+                    <h3 class="text-xl font-bold text-slate-800">Petunjuk Menulis:</h3>
+                    
+                    <div class="flex justify-center gap-2">
+                        <button onclick="toggleTracingLetter('H')" class="p-3 border-2 border-orange-400 bg-orange-50 rounded-2xl flex flex-col items-center">
+                            <span class="text-5xl font-black text-orange-600">H / h</span>
+                            <span class="text-xs font-bold text-slate-500 mt-1">Garis Tegak</span>
+                        </button>
+                        <button onclick="toggleTracingLetter('C')" class="p-3 border-2 border-transparent hover:border-orange-300 rounded-2xl flex flex-col items-center">
+                            <span class="text-5xl font-black text-orange-600">C / c</span>
+                            <span class="text-xs font-bold text-slate-500 mt-1">Lengkung</span>
+                        </button>
+                    </div>
+
+                    <div id="writingGuideText" class="text-xs text-left text-slate-500 space-y-2 font-medium">
+                        <p class="font-bold text-slate-600">Cara menulis H Besar:</p>
+                        <p>1. Tarik dua garis lurus ke bawah secara sejajar. ⬇️ ⬇️</p>
+                        <p>2. Hubungkan kedua garis dengan jembatan di tengah. ➡️</p>
+                    </div>
+
+                    <!-- Voice Guide Button -->
+                    <button onclick="speakWritingGuide()" class="w-full py-2 bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-sm rounded-xl shadow transition">
+                        🔊 Dengar Petunjuk Suara
+                    </button>
+                </div>
+
+                <!-- Kanan: Blackboard Tracing Canvas -->
+                <div class="lg:col-span-7 bg-slate-900 p-4 rounded-3xl shadow-2xl flex flex-col items-center border-4 border-amber-300 relative">
+                    <span class="text-xs font-black text-amber-200 uppercase tracking-widest mb-2"><i class="fa-solid fa-chalkboard"></i> Papan Tulis Kelas 1</span>
+
+                    <!-- Actual Canvas Element -->
+                    <div class="relative w-full aspect-[4/3] bg-emerald-950 rounded-2xl overflow-hidden border border-emerald-800">
+                        <canvas id="traceCanvas" class="w-full h-full cursor-crosshair"></canvas>
+                        <!-- Guidelines background -->
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20 border-y-2 border-dashed border-white">
+                            <span id="canvasBackgroundText" class="text-[12rem] font-black text-white select-none">H</span>
+                        </div>
+                    </div>
+
+                    <!-- Draw Controls -->
+                    <div class="w-full mt-4 flex flex-wrap justify-between items-center gap-2">
+                        <div class="flex gap-2">
+                            <button onclick="setBrushColor('#facc15')" class="w-8 h-8 rounded-full bg-yellow-400 border-2 border-white focus:scale-110 transition"></button>
+                            <button onclick="setBrushColor('#f43f5e')" class="w-8 h-8 rounded-full bg-rose-500 border-2 border-white focus:scale-110 transition"></button>
+                            <button onclick="setBrushColor('#38bdf8')" class="w-8 h-8 rounded-full bg-sky-400 border-2 border-white focus:scale-110 transition"></button>
+                            <button onclick="setBrushColor('#ffffff')" class="w-8 h-8 rounded-full bg-white border-2 border-white focus:scale-110 transition"></button>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <button onclick="clearTraceCanvas()" class="px-4 py-2 bg-rose-500 hover:bg-rose-600 text-white font-extrabold text-xs rounded-xl shadow transition">
+                                🗑️ Hapus Semua
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 6: GAME DETEKTIF KATA ==================== -->
+        <section id="content-game" class="tab-content hidden animate-fade-in">
+            <div class="text-center mb-6">
+                <span class="bg-amber-100 text-amber-800 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider">Permainan Edukatif</span>
+                <h2 class="text-3xl font-extrabold text-slate-800 mt-2">Detektif Suku Kata Rumpang! 🧩</h2>
+                <p class="text-sm text-slate-500 font-bold">Seret atau ketuk gelembung suku kata untuk melengkapi kata rumpang di sebelah kiri!</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto bg-white p-6 rounded-3xl shadow-xl border border-slate-100">
+                <!-- Score bar -->
+                <div class="flex justify-between items-center mb-6 bg-slate-50 px-4 py-2.5 rounded-2xl">
+                    <span class="text-sm font-bold text-slate-600">Bintang Pengamat: <strong id="gameStars" class="text-yellow-500">⭐⭐⭐</strong></span>
+                    <span class="text-sm font-bold text-slate-600">Skor Game: <span id="gameScore" class="text-orange-600">0</span></span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Kiri: Targets Column -->
+                    <div class="space-y-4">
+                        <span class="text-xs font-black text-slate-400 uppercase tracking-widest block text-center md:text-left">Isi Kolom yang Rumpang:</span>
+                        
+                        <!-- Target 1: CABAI -->
+                        <div id="target-cabai" class="game-target p-3 bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl flex items-center justify-between transition-all" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'ca')">
+                            <div class="flex items-center gap-3">
+                                <span class="text-4xl">🌶️</span>
+                                <span class="font-bold text-slate-700">_ _ - b a i</span>
+                            </div>
+                            <div id="dropzone-ca" class="w-32 h-10 border border-dashed rounded-xl bg-white flex items-center justify-center text-xs font-black text-slate-300">Letakkan Suku Kata</div>
+                        </div>
+
+                        <!-- Target 2: HUJAN -->
+                        <div id="target-hujan" class="game-target p-3 bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl flex items-center justify-between transition-all" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'hu')">
+                            <div class="flex items-center gap-3">
+                                <span class="text-4xl">🌧️</span>
+                                <span class="font-bold text-slate-700">_ _ - j a n</span>
+                            </div>
+                            <div id="dropzone-hu" class="w-32 h-10 border border-dashed rounded-xl bg-white flex items-center justify-center text-xs font-black text-slate-300">Letakkan Suku Kata</div>
+                        </div>
+
+                        <!-- Target 3: CACING -->
+                        <div id="target-cacing" class="game-target p-3 bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl flex items-center justify-between transition-all" ondragover="allowDrop(event)" ondrop="handleDrop(event, 'ci')">
+                            <div class="flex items-center gap-3">
+                                <span class="text-4xl">🪱</span>
+                                <span class="font-bold text-slate-700">c a - _ _ - n g</span>
+                            </div>
+                            <div id="dropzone-ci" class="w-32 h-10 border border-dashed rounded-xl bg-white flex items-center justify-center text-xs font-black text-slate-300">Letakkan Suku Kata</div>
+                        </div>
+                    </div>
+
+                    <!-- Kanan: Choices Column -->
+                    <div class="space-y-4">
+                        <span class="text-xs font-black text-slate-400 uppercase tracking-widest block text-center md:text-left">Pilih Suku Kata yang Cocok:</span>
+                        
+                        <!-- Word 1: CA -->
+                        <div id="word-ca" draggable="true" ondragstart="handleDragStart(event, 'ca')" onclick="selectWordToMatch('ca')" class="game-word p-4 bg-orange-100 hover:bg-orange-200 border-2 border-orange-300 rounded-2xl shadow-md cursor-grab active:cursor-grabbing text-center font-black text-orange-700 text-lg transition transform hover:-translate-y-1">
+                            ca
+                        </div>
+
+                        <!-- Word 2: HU -->
+                        <div id="word-hu" draggable="true" ondragstart="handleDragStart(event, 'hu')" onclick="selectWordToMatch('hu')" class="game-word p-4 bg-sky-100 hover:bg-sky-200 border-2 border-sky-300 rounded-2xl shadow-md cursor-grab active:cursor-grabbing text-center font-black text-sky-700 text-lg transition transform hover:-translate-y-1">
+                            hu
+                        </div>
+
+                        <!-- Word 3: CI -->
+                        <div id="word-ci" draggable="true" ondragstart="handleDragStart(event, 'ci')" onclick="selectWordToMatch('ci')" class="game-word p-4 bg-red-100 hover:bg-red-200 border-2 border-red-300 rounded-2xl shadow-md cursor-grab active:cursor-grabbing text-center font-black text-red-700 text-lg transition transform hover:-translate-y-1">
+                            ci
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-6 pt-6 border-t border-slate-100">
+                    <p class="text-xs text-slate-400 font-bold mb-2">💡 Tips Alternatif: Klik gelembung suku kata pilihan terlebih dahulu, kemudian ketuk kolom sasaran yang rumpang!</p>
+                    <button onclick="resetMatchGame()" class="px-6 py-2 bg-slate-600 hover:bg-slate-700 text-white font-extrabold text-xs rounded-xl shadow transition">
+                        🔄 Ulangi Permainan
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TAB 7: LATIHAN SOAL (ASESMEN) ==================== -->
+        <section id="content-latihan" class="tab-content hidden animate-fade-in">
+            <div class="text-center mb-8">
+                <span class="bg-indigo-100 text-indigo-800 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider">Asesmen Sumatif Bab 2</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mt-2">Uji Kemampuan Belajarmu! 🧠</h2>
+                <p class="text-sm text-slate-500 font-bold">Kerjakan soal-soal di bawah ini dengan sungguh-sungguh.</p>
+            </div>
+
+            <form id="evaluationForm" onsubmit="calculateFinalScore(event)" class="space-y-8 max-w-4xl mx-auto">
+                
+                <!-- BAGIAN A: PILIHAN GANDA -->
+                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-slate-100">
+                    <div class="flex items-center gap-2 text-orange-700 mb-6 border-b pb-2">
+                        <span class="text-2xl">📝</span>
+                        <h3 class="text-xl font-black">Bagian A: Pilihan Ganda</h3>
+                    </div>
+
+                    <!-- Soal 1 -->
+                    <div class="mb-8 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <p class="font-bold text-slate-800 mb-3"><span class="text-orange-600">1.</span> Bagaimana posisi tubuh meluncur di perosotan yang aman bagi anak-anak?</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <label class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-orange-400 transition">
+                                <input type="radio" name="q1" value="A" class="w-4 h-4 text-orange-600 focus:ring-orange-500">
+                                <span class="text-sm font-semibold text-slate-600">Meluncur kepala di bawah 🙃</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-orange-400 transition">
+                                <input type="radio" name="q1" value="B" class="w-4 h-4 text-orange-600 focus:ring-orange-500">
+                                <span class="text-sm font-semibold text-slate-600">Duduk tegak kaki di depan 🟢</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-orange-400 transition">
+                                <input type="radio" name="q1" value="C" class="w-4 h-4 text-orange-600 focus:ring-orange-500">
+                                <span class="text-sm font-semibold text-slate-600">Berdiri tanpa berpegangan 🔴</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Soal 2 -->
+                    <div class="mb-8 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <p class="font-bold text-slate-800 mb-3"><span class="text-orange-600">2.</span> Manakah tanda baca yang tepat untuk mengakhiri kalimat: "Awas, ada sepeda!"?</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <label class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-orange-400 transition">
+                                <input type="radio" name="q2" value="A" class="w-4 h-4 text-orange-600 focus:ring-orange-500">
+                                <span class="text-sm font-semibold text-slate-600">Tanda Tanya (?)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-orange-400 transition">
+                                <input type="radio" name="q2" value="B" class="w-4 h-4 text-orange-600 focus:ring-orange-500">
+                                <span class="text-sm font-semibold text-slate-600">Tanda Seru (!) ❗️</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-orange-400 transition">
+                                <input type="radio" name="q2" value="C" class="w-4 h-4 text-orange-600 focus:ring-orange-500">
+                                <span class="text-sm font-semibold text-slate-600">Tanda Titik (.)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Soal 3 -->
+                    <div class="mb-8 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <p class="font-bold text-slate-800 mb-3"><span class="text-orange-600">3.</span> Hewan manakah yang namanya diawali dengan suku kata "ha"?</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <label class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-orange-400 transition">
+                                <input type="radio" name="q3" value="A" class="w-4 h-4 text-orange-600 focus:ring-orange-500">
+                                <span class="text-sm font-semibold text-slate-600">🦎 Cicak</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-orange-400 transition">
+                                <input type="radio" name="q3" value="B" class="w-4 h-4 text-orange-600 focus:ring-orange-500">
+                                <span class="text-sm font-semibold text-slate-600">🦈 Hiu</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:border-orange-400 transition">
+                                <input type="radio" name="q3" value="C" class="w-4 h-4 text-orange-600 focus:ring-orange-500">
+                                <span class="text-sm font-semibold text-slate-600">🐯 Harimau 🐯</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BAGIAN B: ISIAN SINGKAT -->
+                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-slate-100">
+                    <div class="flex items-center gap-2 text-orange-700 mb-6 border-b pb-2">
+                        <span class="text-2xl">✏️</span>
+                        <h3 class="text-xl font-black">Bagian B: Isian Singkat</h3>
+                    </div>
+
+                    <!-- Soal 4 -->
+                    <div class="mb-6 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <label for="q4" class="block font-bold text-slate-800 mb-2">
+                            <span class="text-orange-600">4.</span> C-A-C-A bila dirangkai dibaca nama kelinci tangguh yaitu ...
+                        </label>
+                        <input type="text" id="q4" placeholder="Ketik jawabanmu disini" class="w-full px-4 py-3 border-2 border-slate-200 focus:border-orange-400 focus:ring focus:ring-orange-100 rounded-xl font-medium outline-none transition">
+                    </div>
+
+                    <!-- Soal 5 -->
+                    <div class="mb-6 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <label for="q5" class="block font-bold text-slate-800 mb-2">
+                            <span class="text-orange-600">5.</span> Tulislah suku kata yang hilang dari kata rumpang ini: "Hujan" -> _ _ - j a n (Tulis huruf kecil!)
+                        </label>
+                        <input type="text" id="q5" placeholder="Ketik suku kata pengisinya disini" class="w-full px-4 py-3 border-2 border-slate-200 focus:border-orange-400 focus:ring focus:ring-orange-100 rounded-xl font-medium outline-none transition">
+                    </div>
+                </div>
+
+                <!-- Form Submit and Reset Buttons -->
+                <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+                    <button type="submit" class="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-lg rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Kirim Jawaban ke Guru
+                    </button>
+                    <button type="button" onclick="resetForm()" class="px-8 py-4 bg-slate-300 hover:bg-slate-400 text-slate-700 font-extrabold text-sm rounded-2xl shadow transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-trash-can"></i> Bersihkan Jawaban
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- ==================== TAB 8: HASIL & PIAGAM PENGHARGAAN ==================== -->
+        <section id="content-hasil" class="tab-content hidden animate-fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Rapor Score Panel -->
+                <div class="lg:col-span-4 bg-white p-6 rounded-3xl shadow-xl border border-slate-100 space-y-6">
+                    <div class="text-center">
+                        <span class="text-5xl block animate-bounce">🎖️</span>
+                        <h3 class="text-2xl font-black text-slate-800 mt-2">Rapor Nilaimu</h3>
+                        <p class="text-xs text-slate-400 font-bold">Asesmen Hasil Belajar Bab 2</p>
+                    </div>
+
+                    <div class="bg-orange-50 rounded-2xl p-6 text-center border-2 border-orange-200">
+                        <p class="text-xs font-bold text-orange-800 uppercase tracking-widest">Skor Akhir</p>
+                        <span id="finalScoreDisplay" class="text-6xl font-black text-orange-600 block my-2">0</span>
+                        <span id="scoreStatus" class="inline-block bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full font-extrabold">MARI MULAI!</span>
+                    </div>
+
+                    <!-- Custom Name Input for Certificate -->
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
+                        <label for="studentNameInput" class="block text-xs font-black text-slate-500 uppercase">📝 Tulis Nama Lengkapmu:</label>
+                        <input type="text" id="studentNameInput" oninput="updateCertificateName()" value="Murid Tangguh" placeholder="Masukkan namamu disini" class="w-full px-3 py-2 border border-slate-200 focus:border-orange-400 focus:ring focus:ring-orange-100 rounded-xl font-bold outline-none text-center">
+                        <p class="text-[10px] text-slate-400 font-bold text-center">Ketik namamu di atas untuk dicetak otomatis pada sertifikat!</p>
+                    </div>
+
+                    <div class="text-center space-y-2">
+                        <p class="text-xs text-slate-500 font-bold">Cetak piagam penghargaan ini untuk ditunjukkan kepada ayah, ibu, dan bapak/ibu gurumu!</p>
+                        <button onclick="printCertificate()" class="w-full py-3 bg-amber-400 hover:bg-amber-500 text-slate-800 font-black rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-print"></i> Cetak / Simpan PDF
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Dynamic Certificate -->
+                <div class="lg:col-span-8 flex justify-center">
+                    <div id="certificateContainer" class="bg-gradient-to-br from-amber-50 to-orange-50 border-[12px] border-amber-300 p-6 md:p-12 rounded-3xl shadow-2xl relative w-full max-w-2xl text-center select-none overflow-hidden">
+                        
+                        <!-- Decorative Corners -->
+                        <div class="absolute top-2 left-2 text-3xl opacity-40">⭐</div>
+                        <div class="absolute top-2 right-2 text-3xl opacity-40">⭐</div>
+                        <div class="absolute bottom-2 left-2 text-3xl opacity-40">⭐</div>
+                        <div class="absolute bottom-2 right-2 text-3xl opacity-40">⭐</div>
+
+                        <!-- Badge Icon -->
+                        <div class="flex justify-center mb-4">
+                            <div class="bg-orange-400 text-slate-800 w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-lg border-4 border-white animate-pulse">
+                                🚲
+                            </div>
+                        </div>
+
+                        <!-- Content Certificate -->
+                        <h4 class="font-bold text-orange-800 tracking-widest text-sm md:text-lg uppercase">PIAGAM ANAK GIGIH & BERANI</h4>
+                        <div class="h-0.5 bg-gradient-to-r from-transparent via-orange-600 to-transparent my-2"></div>
+                        <p class="text-xs font-semibold text-slate-500 italic mt-1">Diberikan sebagai penghargaan khusus kepada:</p>
+
+                        <h5 id="certName" class="text-2xl md:text-4xl font-black text-slate-800 my-4 tracking-wide break-words drop-shadow">Murid Tangguh</h5>
+
+                        <p class="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                            Atas keberanian dan ketangguhan luar biasa dalam menyelesaikan seluruh pembelajaran keselamatan bermain, mengenali tanda baca, serta memahami huruf <strong class="text-orange-700">Bahasa Indonesia Bab 2: Ayo, Bermain!</strong> secara sempurna.
+                        </p>
+
+                        <!-- Stars display dynamically based on score -->
+                        <div id="certStars" class="flex justify-center gap-2 my-5 text-3xl text-amber-400">
+                            ⭐ ⭐ ⭐
+                        </div>
+
+                        <!-- Meta Info / Footers -->
+                        <div class="grid grid-cols-2 gap-4 mt-8 border-t border-dashed border-orange-300 pt-4 text-xs font-bold text-slate-500">
+                            <div>
+                                <p>Skor Membaca:</p>
+                                <span id="certScore" class="text-lg text-orange-600 font-extrabold">0</span>
+                            </div>
+                            <div>
+                                <p>Predikat Keahlian:</p>
+                                <span id="certPredicate" class="text-lg text-amber-500 font-extrabold">HEBAT!</span>
+                            </div>
+                        </div>
+
+                        <!-- Cute signature -->
+                        <div class="mt-8 flex justify-center flex-col items-center">
+                            <span class="text-xs font-bold text-slate-400">Bapak/Ibu Guru Pendamping</span>
+                            <span class="text-lg font-black text-orange-700 italic mt-2">✨ Kak Caca & Kak Bimi ✨</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-800 text-slate-400 py-6 mt-8 border-t border-slate-700">
+        <div class="container mx-auto px-4 text-center space-y-2">
+            <p class="text-sm font-bold text-slate-300">Aplikasi Pembelajaran Bahasa Indonesia SD Kelas 1 &copy; 2026</p>
+            <p class="text-xs">Berdasarkan Capaian Pembelajaran Kurikulum Merdeka (Fase A) untuk mendukung Deep Learning interaktif.</p>
+        </div>
+    </footer>
+
+    <!-- CUSTOM INTERACTIVE NOTIFICATION MODAL -->
+    <div id="notificationModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl border-4 border-orange-400 transform scale-95 transition-transform">
+            <span id="modalIcon" class="text-6xl block mb-2">⭐</span>
+            <h3 id="modalTitle" class="text-2xl font-black text-slate-800">Hebat!</h3>
+            <p id="modalBody" class="text-sm text-slate-600 font-bold mt-2 leading-relaxed">Pemberitahuan muncul disini.</p>
+            <button onclick="closeNotificationModal()" class="mt-6 px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white font-extrabold rounded-2xl shadow transition w-full">
+                Lanjutkan Belajar! 🚀
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== LOGIKA INTERAKTIF JAVASCRIPT ==================== -->
+    <script>
+        // --- 1. WEB AUDIO API SYNTHESIZER ---
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSoundEffect(type) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            try {
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                if (type === 'pop') {
+                    // Balon meletus / tombol ditekan
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(450, now);
+                    osc.frequency.exponentialRampToValueAtTime(1300, now + 0.08);
+                    gainNode.gain.setValueAtTime(0.15, now);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                    osc.start(now); osc.stop(now + 0.1);
+                } else if (type === 'success') {
+                    // Nada Sukses / Benar
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, now); // C5
+                    osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+                    osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+                    gainNode.gain.setValueAtTime(0.15, now);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+                    osc.start(now); osc.stop(now + 0.35);
+                } else if (type === 'fail') {
+                    // Nada Salah
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(190, now);
+                    osc.frequency.setValueAtTime(140, now + 0.15);
+                    gainNode.gain.setValueAtTime(0.2, now);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now); osc.stop(now + 0.3);
+                } else if (type === 'bell') {
+                    // Bunyi Sepeda Kring Kring (Tinggi, nyaring)
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(1800, now);
+                    osc.frequency.setValueAtTime(1900, now + 0.05);
+                    osc.frequency.setValueAtTime(1800, now + 0.1);
+                    gainNode.gain.setValueAtTime(0.25, now);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                    osc.start(now); osc.stop(now + 0.25);
+                } else if (type === 'fall') {
+                    // Bunyi Bruk! Jatuh
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(180, now);
+                    osc.frequency.exponentialRampToValueAtTime(30, now + 0.2);
+                    gainNode.gain.setValueAtTime(0.4, now);
+                    gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                    osc.start(now); osc.stop(now + 0.25);
+                } else if (type === 'whistle') {
+                    // Bunyi Prit! Prit!
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(1500, now);
+                    osc.frequency.linearRampToValueAtTime(1600, now + 0.06);
+                    gainNode.gain.setValueAtTime(0.15, now);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+                    osc.start(now); osc.stop(now + 0.12);
+                } else if (type === 'laugh') {
+                    // Bunyi Melodi Ceria / Tertawa
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.setValueAtTime(554.37, now + 0.08);
+                    osc.frequency.setValueAtTime(659.25, now + 0.16);
+                    gainNode.gain.setValueAtTime(0.15, now);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now); osc.stop(now + 0.3);
+                }
+            } catch (err) {
+                console.error("Gagal memutar audio:", err);
+            }
+        }
+
+        // --- 2. BAHASA INDONESIA SPEECH SYNTHESIS ---
+        function speakText(textToSpeak) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(textToSpeak);
+                utterance.lang = 'id-ID';
+                utterance.pitch = 1.3;     // Kid friendly high pitch
+                utterance.rate = 0.8;      // Slow rate for grade 1
+
+                const voices = window.speechSynthesis.getVoices();
+                const idVoice = voices.find(v => v.lang.includes('id') || v.lang.includes('ID'));
+                if (idVoice) {
+                    utterance.voice = idVoice;
+                }
+
+                window.speechSynthesis.speak(utterance);
+            } else {
+                console.warn("Speech Synthesis tidak didukung browser ini.");
+            }
+        }
+
+        // --- 3. COMPANION SELECTION ---
+        let selectedCompanion = 'c1';
+        let companionVoiceText = "Halo teman bermain! Namaku Caca Kelinci. Mari kita belajar menjaga keselamatan saat bermain dengan penuh semangat!";
+
+        function selectCompanion(id, name) {
+            document.querySelectorAll('.avatar-opt').forEach(btn => {
+                btn.classList.remove('border-orange-400', 'bg-orange-50');
+                btn.classList.add('border-transparent');
+            });
+
+            const activeBtn = document.getElementById(id);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-transparent');
+                activeBtn.classList.add('border-orange-400', 'bg-orange-50');
+            }
+
+            document.getElementById('activeCompanionName').innerText = name;
+            document.getElementById('companionName').innerText = name;
+
+            const display = document.getElementById('companionDisplay');
+            if (id === 'c1') {
+                display.innerText = '🐰';
+                companionVoiceText = "Halo teman bermain! Namaku Caca Kelinci. Mari kita belajar menjaga keselamatan saat bermain dengan penuh semangat!";
+            } else if (id === 'c2') {
+                display.innerText = '🐱';
+                companionVoiceText = "Hai teman! Aku Koko Kucing. Aku suka bermain sabar mengantre dan tidak berebutan. Meow!";
+            } else if (id === 'c3') {
+                display.innerText = '🐯';
+                companionVoiceText = "Auumm! Aku Hari Harimau yang gagah. Ingat huruf depan namaku adalah H!";
+            } else if (id === 'c4') {
+                display.innerText = '🐦';
+                companionVoiceText = "Ciap-ciap! Aku Cici Burung kecil yang ramah. Yuk kita ikuti misi detektif kata sekarang!";
+            }
+            playSoundEffect('pop');
+            speakText(companionVoiceText);
+        }
+
+        function speakCompanionIntro() {
+            speakText(companionVoiceText);
+        }
+
+        function playBermainSound(type) {
+            if (type === 'bell') {
+                playSoundEffect('bell');
+                setTimeout(() => playSoundEffect('bell'), 180);
+            } else if (type === 'fall') {
+                playSoundEffect('fall');
+            } else if (type === 'whistle') {
+                playSoundEffect('whistle');
+                setTimeout(() => playSoundEffect('whistle'), 150);
+            } else if (type === 'laugh') {
+                playSoundEffect('laugh');
+            }
+        }
+
+        // --- 4. TABS MANAGEMENT ---
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(c => {
+                c.classList.add('hidden');
+                c.classList.remove('block');
+            });
+
+            const targetContent = document.getElementById(`content-${tabName}`);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+                targetContent.classList.add('block');
+            }
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-orange-600', 'shadow');
+                btn.classList.add('hover:bg-white/30', 'text-white');
+            });
+
+            const activeBtn = document.getElementById(`tab-${tabName}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('hover:bg-white/30', 'text-white');
+                activeBtn.classList.add('bg-white', 'text-orange-600', 'shadow');
+            }
+
+            // Canvas tracing init on opening
+            if (tabName === 'menulis') {
+                initTracingCanvas();
+            }
+        }
+
+        // --- 5. SIMULATOR KESELAMATAN & TANDA BACA ---
+        function checkSafetyStatus(isSafe, activityName) {
+            if (isSafe) {
+                playSoundEffect('success');
+                showCustomModal("Bermain Aman 🟢", `${activityName} adalah tindakan bermain yang aman dan patut ditiru agar badan kita sehat dan tidak cedera. Hebat!`, "🟢");
+            } else {
+                playSoundEffect('fall');
+                showCustomModal("Bahaya Bermain 🔴", `${activityName} sangat berbahaya dan dilarang karena bisa melukai tubuh kita dan membuat cedera serius!`, "🔴");
+            }
+        }
+
+        function speakIntonation(type) {
+            if (type === 'tanya') {
+                playSoundEffect('pop');
+                speakText("Apakah kamu mau bermain sepedaku?");
+            } else if (type === 'seru') {
+                playSoundEffect('whistle');
+                speakText("Hati hati! Di sana ada batu besar!");
+            }
+        }
+
+        // --- 6. DONGENG CACA BISA ---
+        const storyPages = [
+            {
+                emoji: '🐰',
+                title: 'Sepeda Roda Empat',
+                text: 'Caca mempunyai sebuah sepeda merah beroda empat. Bunyinya kring-kring yang terdengar menyenangkan sekali!',
+                onomatopoeia: 'Kring! Kring! Kring!',
+                sound: 'bell'
+            },
+            {
+                emoji: '🚲',
+                title: 'Melepas Roda Bantu',
+                text: 'Suatu sore, Caca meminta ayahnya melepas roda bantu sepedanya. Caca ingin bisa menjaga keseimbangan di atas dua roda!',
+                onomatopoeia: 'Goo! Goo! Goo!',
+                sound: 'bell'
+            },
+            {
+                emoji: '💥',
+                title: 'Oleng dan Terjatuh',
+                text: 'Bruk! Sepeda Caca tiba-tiba oleng menabrak pembatas jalan. Caca terjatuh dan lututnya sedikit terluka.',
+                onomatopoeia: 'Bruk! Bruk! Bruk!',
+                sound: 'fall'
+            },
+            {
+                emoji: '🏆',
+                title: 'Caca Pasti Bisa!',
+                text: 'Caca tidak menangis lama. Ia bangkit lagi dengan gigih dan mencoba berulang-ulang sampai akhirnya Caca bisa meluncur dengan lancar!',
+                onomatopoeia: 'Hore! Aku Bisa!',
+                sound: 'laugh'
+            }
+        ];
+
+        let currentStoryPageIdx = 0;
+
+        function updateStoryPage() {
+            const page = storyPages[currentStoryPageIdx];
+            document.getElementById('currentPageNum').innerText = currentStoryPageIdx + 1;
+            document.getElementById('storyIllustration').innerText = page.emoji;
+            document.getElementById('storyPageTitle').innerText = page.title;
+            document.getElementById('storyPageText').innerText = page.text;
+            document.getElementById('onomatopoeiaTag').innerText = page.onomatopoeia;
+
+            document.getElementById('btnStoryPrev').disabled = currentStoryPageIdx === 0;
+            const nextBtn = document.getElementById('btnStoryNext');
+            if (currentStoryPageIdx === storyPages.length - 1) {
+                nextBtn.innerHTML = 'Ulang Dongeng 🔄';
+            } else {
+                nextBtn.innerHTML = 'Lanjut <i class="fa-solid fa-arrow-right"></i>';
+            }
+
+            readStoryPage();
+        }
+
+        function changeStoryPage(direction) {
+            playSoundEffect('pop');
+            currentStoryPageIdx += direction;
+            if (currentStoryPageIdx >= storyPages.length) {
+                currentStoryPageIdx = 0; // Loop back
+            }
+            if (currentStoryPageIdx < 0) {
+                currentStoryPageIdx = 0;
+            }
+            updateStoryPage();
+        }
+
+        function readStoryPage() {
+            const page = storyPages[currentStoryPageIdx];
+            const textToRead = `${page.title}. ${page.text}. Bunyinya ${page.onomatopoeia}`;
+            speakText(textToRead);
+        }
+
+        // --- 7. SUKU KATA & FLASHCARDS ---
+        function pronounceSyllable(syllable, exWord) {
+            playSoundEffect('pop');
+            speakText(`${syllable}! Contoh katanya adalah ${exWord}.`);
+        }
+
+        const flashcardData = [
+            { emoji: '🐯', word: 'HARIMAU' },
+            { emoji: '🌧️', word: 'HUJAN' },
+            { emoji: '🦈', word: 'HIU' },
+            { emoji: '🦑', word: 'CUMI' },
+            { emoji: '🪱', word: 'CACING' },
+            { emoji: '🍫', word: 'COKELAT' }
+        ];
+
+        let currentFlashcardIdx = 0;
+
+        function pronounceFlashcard() {
+            const card = flashcardData[currentFlashcardIdx];
+            speakText(card.word);
+        }
+
+        function nextFlashcard() {
+            playSoundEffect('pop');
+            currentFlashcardIdx = (currentFlashcardIdx + 1) % flashcardData.length;
+            updateFlashcard();
+        }
+
+        function prevFlashcard() {
+            playSoundEffect('pop');
+            currentFlashcardIdx = (currentFlashcardIdx - 1 + flashcardData.length) % flashcardData.length;
+            updateFlashcard();
+        }
+
+        function updateFlashcard() {
+            const card = flashcardData[currentFlashcardIdx];
+            document.getElementById('flashcardEmoji').innerText = card.emoji;
+            document.getElementById('flashcardWord').innerText = card.word;
+            pronounceFlashcard();
+        }
+
+        // --- 8. TRACING CANVAS (PRACTICE WRITING) ---
+        let canvas, ctx;
+        let isDrawing = false;
+        let brushColor = '#facc15';
+        let currentTracingLetter = 'H';
+
+        function initTracingCanvas() {
+            canvas = document.getElementById('traceCanvas');
+            ctx = canvas.getContext('2d');
+
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+
+            ctx.strokeStyle = brushColor;
+            ctx.lineWidth = 12;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+
+            // Touch screen support
+            canvas.addEventListener('touchstart', (e) => {
+                const touch = e.touches[0];
+                const mouseEvent = new MouseEvent('mousedown', {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(mouseEvent);
+            }, { passive: true });
+
+            canvas.addEventListener('touchmove', (e) => {
+                const touch = e.touches[0];
+                const mouseEvent = new MouseEvent('mousemove', {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(mouseEvent);
+            }, { passive: true });
+
+            canvas.addEventListener('touchend', () => {
+                const mouseEvent = new MouseEvent('mouseup', {});
+                canvas.dispatchEvent(mouseEvent);
+            }, { passive: true });
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const rect = canvas.getBoundingClientRect();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            const rect = canvas.getBoundingClientRect();
+            ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+            ctx.stroke();
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function setBrushColor(color) {
+            brushColor = color;
+            ctx.strokeStyle = brushColor;
+            playSoundEffect('pop');
+        }
+
+        function clearTraceCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            playSoundEffect('pop');
+        }
+
+        function toggleTracingLetter(letter) {
+            currentTracingLetter = letter;
+            document.getElementById('canvasBackgroundText').innerText = letter;
+            
+            const guideText = document.getElementById('writingGuideText');
+            if (letter === 'H') {
+                guideText.innerHTML = `
+                    <p class="font-bold text-slate-600">Cara menulis H Besar:</p>
+                    <p>1. Tarik dua garis lurus ke bawah secara sejajar. ⬇️ ⬇️</p>
+                    <p>2. Hubungkan kedua garis dengan jembatan di tengah. ➡️</p>
+                `;
+            } else if (letter === 'C') {
+                guideText.innerHTML = `
+                    <p class="font-bold text-slate-600">Cara menulis C Besar:</p>
+                    <p>1. Buat tarikan garis melengkung dari atas memutar ke kiri bawah. 🔄</p>
+                    <p>2. Bentuknya menyerupai bulan sabit yang indah.</p>
+                `;
+            }
+            playSoundEffect('pop');
+            speakWritingGuide();
+        }
+
+        function speakWritingGuide() {
+            if (currentTracingLetter === 'H') {
+                speakText("Cara menulis H besar. Tarik dua garis lurus ke bawah secara sejajar. Hubungkan kedua garis dengan jembatan di tengah.");
+            } else {
+                speakText("Cara menulis C besar. Buat tarikan garis melengkung dari atas memutar ke kiri bawah, menyerupai bulan sabit.");
+            }
+        }
+
+        // --- 9. MINI GAME: MATCHING GAME (Suku Kata Rumpang) ---
+        let selectedWord = null;
+
+        function handleDragStart(e, wordId) {
+            e.dataTransfer.setData('text/plain', wordId);
+            playSoundEffect('pop');
+        }
+
+        function allowDrop(e) {
+            e.preventDefault();
+        }
+
+        function handleDrop(e, targetId) {
+            e.preventDefault();
+            const draggedWordId = e.dataTransfer.getData('text/plain');
+            processMatching(draggedWordId, targetId);
+        }
+
+        function selectWordToMatch(wordId) {
+            selectedWord = wordId;
+            playSoundEffect('pop');
+            
+            document.querySelectorAll('.game-word').forEach(btn => {
+                btn.classList.remove('ring-4', 'ring-orange-500');
+            });
+            const activeBtn = document.getElementById(`word-${wordId}`);
+            if (activeBtn) {
+                activeBtn.classList.add('ring-4', 'ring-orange-500');
+            }
+
+            document.querySelectorAll('.game-target').forEach(tgt => {
+                tgt.className = "game-target p-3 bg-orange-50 border-2 border-dashed border-orange-400 rounded-2xl flex items-center justify-between transition-colors cursor-pointer";
+                tgt.onclick = function() {
+                    const targetId = tgt.id.replace('target-', '');
+                    let shortTarget = '';
+                    if (targetId === 'cabai') shortTarget = 'ca';
+                    else if (targetId === 'hujan') shortTarget = 'hu';
+                    else if (targetId === 'cacing') shortTarget = 'ci';
+                    processMatching(selectedWord, shortTarget);
+                };
+            });
+        }
+
+        let completedMatches = 0;
+        let gameScore = 0;
+
+        function processMatching(wordId, targetId) {
+            if (!wordId) return;
+
+            if (wordId === targetId) {
+                playSoundEffect('success');
+                gameScore += 30;
+                completedMatches++;
+
+                let wordKey = '';
+                let label = '';
+                if (targetId === 'ca') { wordKey = 'cabai'; label = 'CA - BAI'; }
+                else if (targetId === 'hu') { wordKey = 'hujan'; label = 'HU - JAN'; }
+                else if (targetId === 'ci') { wordKey = 'cacing'; label = 'CA - CI - NG'; }
+
+                const targetZone = document.getElementById(`target-${wordKey}`);
+                const dropBox = document.getElementById(`dropzone-${targetId}`);
+                const sourceWord = document.getElementById(`word-${wordId}`);
+
+                dropBox.innerText = label;
+                dropBox.className = "w-32 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center text-sm font-black shadow";
+                targetZone.className = "game-target p-3 bg-emerald-50 border-2 border-emerald-500 rounded-2xl flex items-center justify-between";
+                targetZone.onclick = null;
+
+                sourceWord.style.display = 'none';
+                document.getElementById('gameScore').innerText = gameScore;
+
+                if (completedMatches === 3) {
+                    setTimeout(() => {
+                        showCustomModal("Detektif Berhasil!", "Kamu sangat hebat menyelesaikan kata rumpang hari ini! Hebat sekali!", "🎉");
+                    }, 500);
+                }
+            } else {
+                playSoundEffect('fail');
+                showCustomModal("Salah Sasaran!", "Suku kata pilihanmu kurang cocok di kolom rumpang tersebut. Coba lagi ya!", "❌");
+            }
+
+            selectedWord = null;
+            document.querySelectorAll('.game-word').forEach(btn => {
+                btn.classList.remove('ring-4', 'ring-orange-500');
+            });
+            resetTargetClasses();
+        }
+
+        function resetTargetClasses() {
+            document.querySelectorAll('.game-target').forEach(tgt => {
+                tgt.className = "game-target p-3 bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl flex items-center justify-between transition-colors duration-300";
+                tgt.onclick = null;
+            });
+        }
+
+        function resetMatchGame() {
+            completedMatches = 0;
+            gameScore = 0;
+            selectedWord = null;
+            document.getElementById('gameScore').innerText = '0';
+            
+            document.querySelectorAll('.game-word').forEach(btn => {
+                btn.style.display = 'block';
+                btn.classList.remove('ring-4', 'ring-orange-500');
+            });
+
+            const keys = [
+                { id: 'cabai', dropId: 'ca' },
+                { id: 'hujan', dropId: 'hu' },
+                { id: 'cacing', dropId: 'ci' }
+            ];
+            keys.forEach(k => {
+                const dropBox = document.getElementById(`dropzone-${k.dropId}`);
+                dropBox.innerText = "Letakkan Suku Kata";
+                dropBox.className = "w-32 h-10 border border-dashed rounded-xl bg-white flex items-center justify-center text-xs font-black text-slate-300";
+                document.getElementById(`target-${k.id}`).className = "game-target p-3 bg-slate-50 border-2 border-dashed border-slate-200 rounded-2xl flex items-center justify-between transition-colors duration-300";
+            });
+            resetTargetClasses();
+            playSoundEffect('pop');
+        }
+
+        // --- 10. EVALUASI DAN LATIHAN SOAL ---
+        function calculateFinalScore(event) {
+            event.preventDefault();
+
+            const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+            const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+            const q3 = document.querySelector('input[name="q3"]:checked')?.value;
+            const q4 = document.getElementById('q4').value.trim().toLowerCase();
+            const q5 = document.getElementById('q5').value.trim().toLowerCase();
+
+            if (!q1 || !q2 || !q3 || !q4 || !q5) {
+                showCustomModal("Soal Belum Lengkap", "Harap selesaikan seluruh pertanyaan pilihan ganda dan isian sebelum mengirim jawaban ya!", "⚠️");
+                return;
+            }
+
+            let score = 0;
+
+            // Kunci Jawaban
+            // Q1: B (Duduk tegak kaki di depan)
+            if (q1 === 'B') score += 20;
+            // Q2: B (Tanda Seru (!))
+            if (q2 === 'B') score += 20;
+            // Q3: C (Harimau)
+            if (q3 === 'C') score += 20;
+            // Q4: caca
+            if (q4.includes('caca')) score += 20;
+            // Q5: hu
+            if (q5 === 'hu') score += 20;
+
+            document.getElementById('finalScoreDisplay').innerText = score;
+            document.getElementById('certScore').innerText = score;
+
+            let predicate = "PERLU BELAJAR";
+            let stars = "⭐";
+            let status = "COBA LAGI";
+
+            if (score === 100) {
+                predicate = "ISTIMEWA ⭐⭐⭐";
+                stars = "⭐ ⭐ ⭐";
+                status = "LUAR BIASA PINTAR!";
+            } else if (score >= 80) {
+                predicate = "SANGAT BAGUS ⭐⭐";
+                stars = "⭐ ⭐";
+                status = "SANGAT BAGUS!";
+            } else if (score >= 60) {
+                predicate = "CUKUP ⭐";
+                stars = "⭐";
+                status = "CUKUP BAIK";
+            }
+
+            document.getElementById('scoreStatus').innerText = status;
+            document.getElementById('certPredicate').innerText = predicate;
+            document.getElementById('certStars').innerText = stars;
+
+            const badge = document.getElementById('scoreStatus');
+            if (score >= 80) {
+                badge.className = "inline-block bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full font-extrabold";
+            } else {
+                badge.className = "inline-block bg-amber-100 text-amber-800 text-xs px-3 py-1 rounded-full font-extrabold";
+            }
+
+            playSoundEffect('success');
+            showCustomModal("Uji Pintar Selesai!", `Selamat! Kamu meraih nilai ${score}. Hasil piagam membaca hebatmu telah dibuat secara otomatis!`, "🏆");
+
+            switchTab('hasil');
+        }
+
+        function resetForm() {
+            document.getElementById('evaluationForm').reset();
+            playSoundEffect('pop');
+            showCustomModal("Dibersihkan!", "Seluruh jawaban pada lembar evaluasi telah dikosongkan.", "🔄");
+        }
+
+        // --- 11. PIAGAM PENGHARGAAN ---
+        function updateCertificateName() {
+            const val = document.getElementById('studentNameInput').value;
+            document.getElementById('certName').innerText = val ? val : "Murid Tangguh";
+        }
+
+        function printCertificate() {
+            window.print();
+        }
+
+        // --- 12. CUSTOM MODAL NOTIFICATION ---
+        function showCustomModal(title, message, icon = "⭐") {
+            document.getElementById('modalIcon').innerText = icon;
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerText = message;
+
+            const modal = document.getElementById('notificationModal');
+            modal.classList.remove('hidden');
+        }
+
+        function closeNotificationModal() {
+            document.getElementById('notificationModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
